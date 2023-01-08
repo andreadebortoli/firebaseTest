@@ -76,12 +76,12 @@
           filtered.forEach((element) => {
             list.innerHTML += `<div
         id="info-card"
-        class="card col-xl-6 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-between align-items-center"
+        class="card col-xl-6 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-start align-items-center pl-1 "
           style="height: 30px;"
         >
           
             <div
-              class="rounded btn btn-primary d-flex align-items-center"
+              class="rounded btn btn-primary d-flex align-items-center p-0"
               data-toggle="collapse"
               href="#collapseExample${element.id}"
               role="button"
@@ -90,13 +90,12 @@
               style="
                 background-color: royalblue;
                 height: 20px;
-                width: 60px;
-          
+                width: 40px;
               "
             >
-            <div class="d-flex justify-content-end align-items-center mt-3">
+            <div class="d-flex justify-content-end align-items-center mt-3 ">
             <p style="font-size: small; font-weight: lighter;width: 10px">${element.week_day}</p>
-              <p class="font-weight-bold text-right" style="width: 30px">
+              <p class="font-weight-bold text-right pr-1" style="width: 30px">
                 ${element.date}
               </p>
               </div>
@@ -118,12 +117,9 @@
 
         </div>
         <div class="collapse" id="collapseExample${element.id}">
-          <div class="card card-body mt-2">
+          <div class="card card-body  col-xl-6 col-md-12 mx-auto">
             <p>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
+              ${element.con_chi} ${element.note}
             </p>
             <label for="">totale ore</label>
             <input type="text" style="width: 40px" />
