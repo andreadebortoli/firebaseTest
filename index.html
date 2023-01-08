@@ -1,117 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script
       src="https://kit.fontawesome.com/bb21bdf6ed.js"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
   </head>
-  <body>
-    <h1 id="titolo">Firebase</h1>
+  <body style="background-color: whitesmoke;">
+    <div class="d-flex justify-content-center">  
+      <h1 id="titolo">Firebase</h1>
 
-    <div id="container" class="container-fluid">
-      <div
-        id="info-card"
-        class="card col-xl-6 col-md-12 mx-auto shadow-sm p-2 bg-white rounded mb-1"
-      >
-        <div
-          class="d-flex justify-content-between align-items-center"
-          style="height: 30px; margin-top: 10px"
-        >
-          <div class="d-flex flex-column">
-            <div
-              class="rounded"
-              style="
-                background-color: royalblue;
-                height: 20px;
-                width: 50px;
-                text-align: center;
-              "
-            >
-              <h6 class="text-white font-weight-bold">
-                <span style="font-size: small; font-weight: lighter">lun</span>
-                9
-              </h6>
-            </div>
-          </div>
-          <div class="d-flex flex-column" style="font-size: smaller">
-            <p class="m-0">
-              Portogruaro...<i class="ml-1 fa-solid fa-car-side"></i>
-            </p>
-
-            <p>Tecnico generico</p>
-          </div>
-
-          <div
-            class="d-flex flex-column font-italic font-weight-light"
-            style="font-size: smaller; margin-top: 10px"
-          >
-            <p class="m-0">9:00-13:00</p>
-            <p>14:00-18:00</p>
-          </div>
-          <p>
-            <a
-              class="btn btn-primary p-0"
-              data-toggle="collapse"
-              href="#collapseExample1"
-              role="button"
-              aria-expanded="false"
-              aria-controls="collapseExample"
-              style="height: 25px; width: 25px"
-            >
-              <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-            </a>
-          </p>
-        </div>
-        <div class="collapse" id="collapseExample1">
-          <div class="card card-body mt-2">
-            <p>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
-            </p>
-            <label for="">totale ore</label>
-            <input type="text" style="width: 40px" />
-          </div>
-        </div>
-      </div>
     </div>
+    <div class="container-fluid " " id="list"></div>
 
-    <!--     <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col">info</th>
-          <th scope="col">#</th>
-          <th scope="col">data</th>
-          <th scope="col">location</th>
-          <th scope="col">attività</th>
-          <th scope="col">dalle</th>
-          <th scope="col">alle</th>
-          <th scope="col">dalle</th>
-          <th scope="col">alle</th>
-          <th scope="col">n.</th>
-          <th scope="col">trasporto</th>
-          <th scope="col">note</th>
-          <th scope="col">tot</th>
-          <th scope="col">Fede</th>
-
-        </tr>
-      </thead>
-      <tbody id="table-body"></tbody>
-    </table> -->
-
-    <script type="module">
+<script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
       import {
@@ -147,21 +58,81 @@
       const db = getDatabase(app);
 
       (function () {
-        const node = document.getElementById("info-card");
-        for (var i = 0; i < 35; i++) {
-          console.log(i)
-          const clone = node.cloneNode(true);
-          document.getElementById("container").appendChild(clone);
-        }
-        
-        var table = document.getElementById("table");
+        const container = document.getElementById("list");
 
         var titolo = document.getElementById("titolo");
-        var body = document.getElementById("table-body");
+        const month = ["GENNAIO","FEBBRAIO","MARZO","APRILE","MAGGI0","GIUGNO","LUGLIO","AGOSTO","SETTEMBRE","OTTOBRE","NOVEMBRE","DICEMBRE"];
+
+      const d = new Date();
+      let mese = month[d.getMonth()]; 
+      titolo.innerText = mese;
         const readUser = ref(db, "jobInfo/");
         onValue(readUser, (snapshot) => {
-          snapshot.forEach((element) => {
+          const filtered = filterData([snapshot.val()[mese], "FEDE"]);
+
+          while (container.lastElementChild) {
+            container.removeChild(container.lastElementChild);
+          }
+          filtered.forEach((element) => {
+            list.innerHTML += `<div
+        id="info-card"
+        class="card col-xl-6 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-between align-items-center"
+          style="height: 30px;"
+        >
+          
+            <div
+              class="rounded btn btn-primary d-flex align-items-center"
+              data-toggle="collapse"
+              href="#collapseExample${element.id}"
+              role="button"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+              style="
+                background-color: royalblue;
+                height: 20px;
+                width: 60px;
+          
+              "
+            >
+            <div class="d-flex justify-content-end align-items-center mt-3">
+            <p style="font-size: small; font-weight: lighter;width: 10px">${element.week_day}</p>
+              <p class="font-weight-bold text-right" style="width: 30px">
+                ${element.date}
+              </p>
+              </div>
+            </div>
+         
+          <div class="d-flex align-items-center pt-3" style="font-size: smaller;  width: 300px;">
+            <i class="ml-2 mb-3 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
+            <p class=" font-weight-bold" style="width: 200px">
+              ${element.location} 
+            </p>
+
+            <p class="ml-2" style="width: 200px">${element.activity}</p>
+          </div>
+
+          <div class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; width: 200px; ">
+            <p class="mr-1">${element.dalle_am} ${element.alle_am}</p>
+            <p>${element.dalle_pm} ${element.alle_pm}</p>
+          </div>
+
+        </div>
+        <div class="collapse" id="collapseExample${element.id}">
+          <div class="card card-body mt-2">
+            <p>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+            </p>
+            <label for="">totale ore</label>
+            <input type="text" style="width: 40px" />
+          </div>
+        </div>
+      `;
+
           });
+          /*  document.body.append(container); */
           /*  while (body.lastElementChild) {
               body.removeChild(body.lastElementChild);
             } */
@@ -186,6 +157,39 @@
           }); */
         });
       })();
+      function filterData([data, tecnico]) {
+        const filtered = data.filter((x) => x.tecnici[tecnico] == "x");
+
+        for (var fil of filtered) {
+          checkVehicle(fil);
+          fil["con_chi"] = "";
+          for (let [key, val] of Object.entries(fil["tecnici"])) {
+            if (val === "x" && key != tecnico && val !== "") {
+              fil["con_chi"] += key + "  ";
+            }
+          }
+        }
+        return filtered;
+      }
+
+      function checkVehicle(filteredData) {
+        switch (filteredData["vehicle"]) {
+          case "R":
+          filteredData["vehicle"] = "fa-truck text-danger"
+            break;
+          case "B":
+          filteredData["vehicle"] = "fa-truck-field text-primary"
+
+            break;
+          case "auto":
+          filteredData["vehicle"] = "fa-car-side"
+
+            break;
+        }
+        
+
+        return filteredData["vehicle"]
+      }
     </script>
     <script
       src="https://code.jquery.com/jquery-3.6.3.min.js"
