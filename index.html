@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+    <link rel="stylesheet" href="style.css">
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
@@ -76,7 +76,7 @@
           filtered.forEach((element) => {
             list.innerHTML += `<div
         id="info-card"
-        class="card col-xl-12 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-start align-items-center pl-1 "
+        class="card col-xl-6 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-start align-items-center pl-1 "
           style="height: 30px;"
         >
           
@@ -100,27 +100,30 @@
               </p>
               </div>
             </div>
-         
-          <div class="d-flex align-items-center pt-3" style="font-size: smaller;  width: 300px;">
-            <i class="ml-2 mb-3 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
+            <div>
+              <i class="ml-2 mb-0 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
+            </div>
+          <div id="activity-location" class="d-flex align-items-center pt-3" style="font-size: smaller;  width: 300px;">
             <p class=" font-weight-bold" style="width: 200px">
               ${element.location} 
             </p>
 
             <p class="ml-2" style="width: 200px">${element.activity}</p>
           </div>
-
-          <div class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; width: 200px; ">
+          <div id="time" class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; width: 200px; ">
             <p class="mr-1">${element.dalle_am} ${element.alle_am}</p>
             <p>${element.dalle_pm} ${element.alle_pm}</p>
           </div>
+          
 
         </div>
-        <div class="collapse" id="collapseExample${element.id}">
-          <div class="card card-body  col-xl-12 col-md-12 mx-auto">
+        <div class="collapse" id="collapseExample${element.id}" >
+          <div class="card card-body  col-xl-6 col-md-12 mx-auto">
+           
             <p>
-              ${element.con_chi} ${element.note}
+              ${element.con_chi} 
             </p>
+            <p>${element.note}</p>
             <label for="">totale ore</label>
             <input type="text" style="width: 40px" />
           </div>

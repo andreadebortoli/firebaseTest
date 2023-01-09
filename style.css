@@ -1,0 +1,24 @@
+@media screen and (max-width: 600px) {
+    #time {
+      flex-direction: column;
+      margin-bottom: 20px;
+
+      ;
+    }
+    #time p{
+        padding: 0px;
+        margin: 0px;
+        font-size: 10px;
+    }
+    #activity-location{
+        flex-direction: column;
+        padding: 0px;
+        margin: 0px;
+        margin-bottom: 20px;
+    }
+    #activity-location p{
+        padding: 0px;
+        margin: 0px;
+        font-size: 10px;
+    }
+  }
