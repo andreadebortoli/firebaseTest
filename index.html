@@ -95,7 +95,7 @@
             >
             <div class="d-flex justify-content-end align-items-center mt-3 ">
             <p style="font-size: small; font-weight: lighter;width: 10px">${element.week_day}</p>
-              <p class="font-weight-bold text-right pr-1" style="width: 30px">
+              <p class="font-weight-bold text-right pr-1" style="min-width: 20px">
                 ${element.date}
               </p>
               </div>
@@ -103,14 +103,14 @@
             <div>
               <i class="ml-2 mb-0 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
             </div>
-          <div id="activity-location" class="d-flex align-items-center pt-3" style="font-size: smaller;  width: 300px;">
+          <div id="activity-location" class="d-flex align-items-center pt-3" style="font-size: smaller;  min-width: 50px;">
             <p class=" font-weight-bold" style="width: 200px">
               ${element.location} 
             </p>
 
             <p class="ml-2" style="width: 200px">${element.activity}</p>
           </div>
-          <div id="time" class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; width: 200px; ">
+          <div id="time" class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; min-width: 70px; ">
             <p class="mr-1">${element.dalle_am} ${element.alle_am}</p>
             <p>${element.dalle_pm} ${element.alle_pm}</p>
           </div>
