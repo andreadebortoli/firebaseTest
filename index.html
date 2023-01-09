@@ -103,7 +103,7 @@
             <div>
               <i class="ml-2 mb-0 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
             </div>
-          <div id="activity-location" class="d-flex align-items-center pt-3" style="font-size: smaller;  min-width: 50px;">
+          <div id="activity-location" class="d-flex align-items-center pt-3 ml-2" style="font-size: smaller;  min-width: 50px;">
             <p class=" font-weight-bold" style="width: 200px">
               ${element.location} 
             </p>
@@ -113,7 +113,8 @@
           <div id="time" class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; min-width: 70px; ">
             <p class="mr-1">${element.dalle_am} ${element.alle_am}</p>
             <p>${element.dalle_pm} ${element.alle_pm}</p>
-          </div>
+            </div>
+            <div id="note" style="font-size: small"><p>${element.note}</p></div>
           
 
         </div>
@@ -123,7 +124,7 @@
             <p>
               ${element.con_chi} 
             </p>
-            <p>${element.note}</p>
+            
             <label for="">totale ore</label>
             <input type="text" style="width: 40px" />
           </div>
