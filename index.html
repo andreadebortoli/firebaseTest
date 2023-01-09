@@ -76,8 +76,8 @@
           filtered.forEach((element) => {
             list.innerHTML += `<div
         id="info-card"
-        class="card col-xl-6 col-md-12 mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-start align-items-center pl-1 "
-          style="height: 30px;"
+        class="card  mx-auto shadow-sm  rounded mb-1 d-flex flex-row justify-content-start align-items-center pl-1 "
+          style="height: 30px; "
         >
           
             <div
@@ -90,43 +90,45 @@
               style="
                 background-color: royalblue;
                 height: 20px;
-                width: 40px;
+                min-width: 30px;
               "
             >
-            <div class="d-flex justify-content-end align-items-center mt-3 ">
+            <div class="d-flex justify-content-end align-items-center  mt-3 " style="">
             <p style="font-size: small; font-weight: lighter;width: 10px">${element.week_day}</p>
-              <p class="font-weight-bold text-right pr-1" style="min-width: 20px">
+              <p class="font-weight-bold text-right pr-1 " ">
                 ${element.date}
               </p>
               </div>
             </div>
-            <div>
-              <i class="ml-2 mb-0 mr-2 fa-solid ${checkVehicle(element)}" style="width: 20px"></i>
+            <div class="ml-2 mb-0 mr-2 " style="min-width: 20px; height: 20px;" id="vehicle">
+              <i class=" fa-solid ${checkVehicle(element)}" ></i>
             </div>
-          <div id="activity-location" class="d-flex align-items-center pt-3 ml-2" style="font-size: smaller;  min-width: 50px;">
-            <p class=" font-weight-bold" style="width: 200px">
+          <div id="activity-location" class="d-flex align-items-center mr-3" style="font-size: smaller; min-width: 100px;  ">
+            <p class=" font-weight-bold"  ">
               ${element.location} 
             </p>
 
-            <p class="ml-2" style="width: 200px">${element.activity}</p>
+            <p class="ml-2" ; ">${element.activity}</p>
           </div>
-          <div id="time" class="d-flex justify-content-start font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px; min-width: 70px; ">
+          <div id="time" class="d-flex justify-content-start  font-italic font-weight-light pt-2" style="font-size: smaller; margin-top: 10px;  min-width: 70px">
             <p class="mr-1">${element.dalle_am} ${element.alle_am}</p>
             <p>${element.dalle_pm} ${element.alle_pm}</p>
             </div>
-            <div id="note" style="font-size: small"><p>${element.note}</p></div>
+            <div id="note" style="font-size: small"><p>${element.note.length > 15 ? element.note.substring(0, 15).concat('...') : element.note } </p></div>
           
 
         </div>
-        <div class="collapse" id="collapseExample${element.id}" >
-          <div class="card card-body  col-xl-6 col-md-12 mx-auto">
-           
+        <div class="collapse" id="collapseExample${element.id}"  >
+          <div class="card card-body  mx-auto">
+           <div class="d-flex justify-content-around" style="height: 40px;">
             <p>
               ${element.con_chi} 
             </p>
-            
-            <label for="">totale ore</label>
-            <input type="text" style="width: 40px" />
+            <div>
+              <p>totale ore</p>
+              <input type="text" style="width: 20px; height: 20px;" />
+            </div>
+          </div>
           </div>
         </div>
       `;
